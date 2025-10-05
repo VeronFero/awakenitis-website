@@ -1,0 +1,357 @@
+## File: index.html
+
+- Offset: 0
+- Length: 15906
+- Total Length: 15906
+
+### Content:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWAKENITIS - Awaken Your Potential</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.jpg" alt="AWAKENITIS" class="logo-img">
+                <span class="logo-text">AWAKENITIS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#learn" class="nav-link">Learn English</a></li>
+                <li><a href="#entertainment" class="nav-link">Entertainment</a></li>
+                <li><a href="#courses" class="nav-link">Courses</a></li>
+                <li><a href="#news" class="nav-link">Positive News</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="electric-effect"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Awaken Your <span class="electric-text">Potential</span></h1>
+            <p class="hero-subtitle">Discover your unique learning path through English, entertainment, and personal growth. Join a community dedicated to human magnificence.</p>
+            <button class="cta-button" onclick="startPersonalizedJourney()">Begin Your Journey</button>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Personality Assessment Modal (Hidden) -->
+    <div id="personalityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Let's Get Started!</h2>
+                <p>Help us personalize your experience</p>
+            </div>
+            <div class="assessment-container">
+                <div class="question-card" id="questionCard">
+                    <div class="question-counter">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">5</span>
+                    </div>
+                    <h3 id="questionText">What time of day do you feel most energetic?</h3>
+                    <div class="answer-options" id="answerOptions">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <section class="features-grid">
+        <div class="container">
+            <div class="feature-card" data-feature="learn">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Learn English</h3>
+                <p>Master English with AI-powered lessons tailored to your learning style</p>
+                <div class="card-hover-effect"></div>
+            </div>
+            <div class="feature-card" data-feature="entertainment">
+                <div class="feature-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3>Watch & Learn</h3>
+                <p>Enjoy movies and series while improving your language skills</p>
+                <div class="card-hover-effect"></div>
+            </div>
+            <div class="feature-card" data-feature="courses">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Premium Courses</h3>
+                <p>Access exclusive courses designed to accelerate your growth</p>
+                <div class="card-hover-effect"></div>
+            </div>
+            <div class="feature-card" data-feature="news">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Positive News</h3>
+                <p>Daily inspiration celebrating human kindness and achievement</p>
+                <div class="card-hover-effect"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learn English Section -->
+    <section id="learn" class="section learn-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Learn English Your Way</h2>
+                <p>Personalized lessons that adapt to your unique learning style</p>
+            </div>
+            <div id="learningContent" class="learning-grid">
+                <!-- Content will be populated based on personality assessment -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Entertainment Section -->
+    <section id="entertainment" class="section entertainment-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entertainment Hub</h2>
+                <p>Learn through entertainment with curated content</p>
+            </div>
+            <div id="entertainmentContent" class="entertainment-grid">
+                <!-- Content will be populated based on personality assessment -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="section courses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Premium Courses</h2>
+                <p>Unlock your potential with our comprehensive course collection</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Advanced English Mastery</h3>
+                        <p>Complete English fluency program with personalized coaching</p>
+                        <div class="course-features">
+                            <span><i class="fas fa-check"></i> 50+ Video Lessons</span>
+                            <span><i class="fas fa-check"></i> Personal Coach</span>
+                            <span><i class="fas fa-check"></i> Certificate</span>
+                        </div>
+                        <button class="course-btn" onclick="redirectToWhop('english-mastery')">Get Course</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Personal Development</h3>
+                        <p>Transform your mindset and unlock your full potential</p>
+                        <div class="course-features">
+                            <span><i class="fas fa-check"></i> 30+ Modules</span>
+                            <span><i class="fas fa-check"></i> Community Access</span>
+                            <span><i class="fas fa-check"></i> Lifetime Updates</span>
+                        </div>
+                        <button class="course-btn" onclick="redirectToWhop('personal-development')">Get Course</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Complete Bundle</h3>
+                        <p>All courses plus exclusive bonuses and mentorship</p>
+                        <div class="course-features">
+                            <span><i class="fas fa-check"></i> All Courses</span>
+                            <span><i class="fas fa-check"></i> 1-on-1 Sessions</span>
+                            <span><i class="fas fa-check"></i> VIP Community</span>
+                        </div>
+                        <button class="course-btn premium" onclick="redirectToWhop('complete-bundle')">Get Bundle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section news-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Positive News</h2>
+                <p>Celebrating human kindness and inspiring stories from around the world</p>
+            </div>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-category">Community</div>
+                        <h3>Local Heroes Transform Neighborhood</h3>
+                        <p>A group of volunteers has created a learning center that's helping hundreds of people improve their English skills...</p>
+                        <div class="news-meta">
+                            <span class="news-date">Today</span>
+                            <span class="news-author">AWAKENITIS Team</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-category">Global Impact</div>
+                        <h3>Students Connect Across Continents</h3>
+                        <p>Online language exchange programs are creating lasting friendships and breaking down cultural barriers...</p>
+                        <div class="news-meta">
+                            <span class="news-date">Yesterday</span>
+                            <span class="news-author">AWAKENITIS Team</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-category">Inspiration</div>
+                        <h3>Teacher's Innovation Changes Lives</h3>
+                        <p>Using movies and entertainment, one teacher has revolutionized how students engage with language learning...</p>
+                        <div class="news-meta">
+                            <span class="news-date">2 days ago</span>
+                            <span class="news-author">AWAKENITIS Team</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="news-load-more">
+                <button class="secondary-btn">Load More Stories</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="section community-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Join Our Community</h2>
+                <p>Connect with like-minded individuals on a journey of growth and learning</p>
+            </div>
+            <div class="community-stats">
+                <div class="stat-card">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Active Learners</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1M+</div>
+                    <div class="stat-label">Lessons Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+            <div class="community-features">
+                <div class="community-feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Global Network</h3>
+                    <p>Connect with learners from around the world</p>
+                </div>
+                <div class="community-feature">
+                    <i class="fas fa-comments"></i>
+                    <h3>Peer Support</h3>
+                    <p>Get help and encouragement from fellow learners</p>
+                </div>
+                <div class="community-feature">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Achievements</h3>
+                    <p>Celebrate milestones and track your progress</p>
+                </div>
+                <div class="community-feature">
+                    <i class="fas fa-calendar"></i>
+                    <h3>Events</h3>
+                    <p>Join virtual meetups and learning sessions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="AWAKENITIS">
+                        <span>AWAKENITIS</span>
+                    </div>
+                    <p>Awakening human potential through personalized learning and positive community connection.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#learn">English Lessons</a></li>
+                        <li><a href="#entertainment">Entertainment</a></li>
+                        <li><a href="#courses">Premium Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#news">Positive News</a></li>
+                        <li><a href="#community">Join Community</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AWAKENITIS. All rights reserved. Awakening potential worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+```
