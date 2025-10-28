@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWAKENITIS - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: rgba(20, 20, 40, 0.9);
+            border-bottom: 2px solid #40e0ff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .admin-logo h1 {
+            font-size: 1.8rem;
+            color: #40e0ff;
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .admin-nav button {
+            background: rgba(64, 224, 255, 0.1);
+            border: 1px solid #40e0ff;
+            color: #40e0ff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .admin-nav button:hover {
+            background: #40e0ff;
+            color: #0a0a0a;
+        }
+
+        .admin-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #40e0ff;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .section {
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: #40e0ff;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #40e0ff;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #40e0ff 0%, #00a0e0 100%);
+            border: none;
+            color: #0a0a0a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(64, 224, 255, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff4040 0%, #e00000 100%);
+            color: #fff;
+        }
+
+        .items-list {
+            margin-top: 1.5rem;
+        }
+
+        .item-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(64, 224, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            color: #40e0ff;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-meta {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #0f0;
+        }
+
+        .alert-error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #f00;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(64, 224, 255, 0.2);
+        }
+
+        .tab {
+            background: transparent;
+            border: none;
+            color: #888;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .tab.active {
+            color: #40e0ff;
+            border-bottom: 2px solid #40e0ff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 10rem auto;
+            padding: 2rem;
+            background: rgba(20, 20, 40, 0.9);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .login-title {
+            text-align: center;
+            color: #40e0ff;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginSection" style="display: block;">
+        <div class="login-container">
+            <h1 class="login-title">AWAKENITIS Admin</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+            </form>
+            <div id="loginError" style="margin-top: 1rem;"></div>
+        </div>
+    </div>
+
+    <div id="dashboardSection" style="display: none;">
+        <header class="admin-header">
+            <div class="admin-logo">
+                <h1><i class="fas fa-crown"></i> AWAKENITIS Admin</h1>
+            </div>
+            <div class="admin-nav">
+                <button onclick="location.href='index.html'"><i class="fas fa-home"></i> View Site</button>
+                <button onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <div id="alertContainer"></div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <i class="fas fa-quote-right" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="totalQuotes">0</div>
+                    <div class="stat-label">Total Quotes</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-music" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="totalMusic">0</div>
+                    <div class="stat-label">Music Tracks</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-brain" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="totalKnowledge">0</div>
+                    <div class="stat-label">Knowledge Entries</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-file-alt" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="totalDocuments">0</div>
+                    <div class="stat-label">Documents Uploaded</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-comments" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="totalChats">0</div>
+                    <div class="stat-label">Chat Messages</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-blog" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="totalBlogPosts">0</div>
+                    <div class="stat-label">Blog Posts</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-day" style="font-size: 2rem; color: #40e0ff;"></i>
+                    <div class="stat-number" id="currentDate">-</div>
+                    <div class="stat-label">Today's Quote Active</div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('quotes')">Daily Quotes</button>
+                <button class="tab" onclick="switchTab('music')">Music Library</button>
+                <button class="tab" onclick="switchTab('knowledge')">AI Knowledge Base</button>
+                <button class="tab" onclick="switchTab('blog')">Blog Posts</button>
+                <button class="tab" onclick="switchTab('documents')">Documents & Chats</button>
+                <button class="tab" onclick="switchTab('logs')">Update Logs</button>
+            </div>
+
+            <!-- Quotes Management -->
+            <div id="quotesTab" class="tab-content active">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-plus-circle"></i> Add New Quote</h2>
+                    <form id="addQuoteForm">
+                        <div class="form-group">
+                            <label>Quote Text</label>
+                            <textarea id="quoteText" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Author</label>
+                            <input type="text" id="quoteAuthor" required>
+                        </div>
+                        <button type="submit" class="btn">Add Quote</button>
+                    </form>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-list"></i> All Quotes</h2>
+                    <div id="quotesList" class="items-list"></div>
+                </div>
+            </div>
+
+            <!-- Music Management -->
+            <div id="musicTab" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-plus-circle"></i> Add Music Track</h2>
+                    <form id="addMusicForm">
+                        <div class="form-group">
+                            <label>Track Title</label>
+                            <input type="text" id="musicTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>File URL</label>
+                            <input type="url" id="musicUrl" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <input type="text" id="musicGenre" placeholder="Meditation, Sleep, Focus, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label>Frequency</label>
+                            <input type="text" id="musicFrequency" value="432 Hz">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="musicDescription"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Add Track</button>
+                    </form>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-list"></i> All Music Tracks</h2>
+                    <div id="musicList" class="items-list"></div>
+                </div>
+            </div>
+
+            <!-- Knowledge Base Management -->
+            <div id="knowledgeTab" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-plus-circle"></i> Add Knowledge Entry</h2>
+                    <form id="addKnowledgeForm">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="knowledgeCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Religious Institute">Religious Institute</option>
+                                <option value="International Law">International Law & Tax Law</option>
+                                <option value="Occult & Astrology">Occult & Astrology</option>
+                                <option value="English Language">English Language Education</option>
+                                <option value="Music & Film">Music & Film</option>
+                                <option value="Religion & Spirituality">Religion & Spirituality</option>
+                                <option value="Psychology">Psychology</option>
+                                <option value="Health & Fitness">Health & Fitness</option>
+                                <option value="Emotions & Relationships">Emotions & Relationships</option>
+                                <option value="Money Management">Money Management</option>
+                                <option value="Personal Development">Personal Development & Love</option>
+                                <option value="Strategy & Wisdom">Strategy & Wisdom</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="knowledgeTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea id="knowledgeContent" required style="min-height: 150px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Source</label>
+                            <input type="text" id="knowledgeSource" placeholder="Source URL or reference">
+                        </div>
+                        <div class="form-group">
+                            <label>Tags (comma-separated)</label>
+                            <input type="text" id="knowledgeTags" placeholder="tag1, tag2, tag3">
+                        </div>
+                        <button type="submit" class="btn">Add Entry</button>
+                    </form>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-search"></i> Search Knowledge Base</h2>
+                    <div class="form-group">
+                        <input type="text" id="knowledgeSearch" placeholder="Search by title or content...">
+                    </div>
+                    <div id="knowledgeList" class="items-list"></div>
+                </div>
+            </div>
+
+            <!-- Blog Posts Management -->
+            <div id="blogTab" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-plus-circle"></i> Create New Blog Post</h2>
+                    <form id="addBlogForm">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="blogTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea id="blogContent" style="min-height: 200px;" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Video URL (Optional for Vlogs)</label>
+                            <input type="url" id="blogVideoUrl" placeholder="YouTube or Vimeo URL">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="blogCategory" required>
+                                <option value="blog">Blog Post</option>
+                                <option value="vlog">Vlog</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="blogPublished" checked>
+                                Publish Immediately
+                            </label>
+                        </div>
+                        <button type="submit" class="btn">Create Blog Post</button>
+                    </form>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-list"></i> All Blog Posts</h2>
+                    <div id="blogPostsList" class="items-list"></div>
+                </div>
+            </div>
+
+            <!-- Documents & Chats Management -->
+            <div id="documentsTab" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-file-alt"></i> Uploaded Documents</h2>
+                    <div id="adminDocumentsList" class="items-list"></div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-comments"></i> Chat History</h2>
+                    <div style="margin-bottom: 1rem;">
+                        <button class="btn" onclick="loadChatLogs()" style="margin-right: 1rem;">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                        <button class="btn" onclick="clearAllChats()" style="background: #ff4444;">
+                            <i class="fas fa-trash"></i> Clear All Chats
+                        </button>
+                    </div>
+                    <div id="adminChatsList" class="items-list"></div>
+                </div>
+            </div>
+
+            <!-- Update Logs -->
+            <div id="logsTab" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-history"></i> Recent Updates</h2>
+                    <div id="logsList" class="items-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>
